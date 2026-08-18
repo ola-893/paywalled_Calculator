@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Solve™ — Enterprise Answer Delivery</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #111827;
+      }
+
+      /* Base card & element styles */
+      .card-shadow {
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+      }
+      .card-shadow-lg {
+        box-shadow: 0 16px 48px rgba(0, 87, 217, 0.12), 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+      .card-glow-blue {
+        box-shadow: 0 0 0 3px #0057D9, 0 16px 44px rgba(0, 87, 217, 0.2);
+      }
+
+      .btn-green {
+        background-color: #00A86B;
+        color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        font-weight: 700;
+      }
+      .btn-amber {
+        background-color: #F59E0B;
+        color: #ffffff;
+        border: none;
+        border-radius: 28px;
+        font-weight: 700;
+      }
+
+      .redact-blur {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(245, 158, 11, 0.28));
+        border: 1.5px solid rgba(245, 158, 11, 0.5);
+        color: #D97706;
+        backdrop-filter: blur(8px);
+        letter-spacing: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="55.5"
+      data-width="1920"
+      data-height="1080"
+      style="position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #ffffff;"
+    >
+      <!-- Background audio bed with required ID -->
+      <audio
+        id="bg-music"
+        src="assets/corporate-bed.wav"
+        data-start="0"
+        data-duration="55.5"
+        data-volume="0.8"
+      ></audio>
+
+      <!-- Global full-bleed white background on track 0 -->
+      <div
+        id="bg-base"
+        class="clip"
+        data-start="0"
+        data-duration="55.5"
+        data-track-index="0"
+        style="position: absolute; inset: 0; background: #ffffff;"
+      ></div>
+
+      <!-- Subtle background grid pattern on separate track 1 -->
+      <div
+        id="bg-grid"
+        class="clip"
+        data-start="0"
+        data-duration="55.5"
+        data-track-index="1"
+        style="position: absolute; inset: 0; opacity: 0.45; background-image: radial-gradient(#E5E7EB 1.2px, transparent 1.2px); background-size: 36px 36px;"
+      ></div>
+
+      <!-- =================================================================== -->
+      <!-- SCENE 1: THE HOOK (0s - 7s) -->
+      <!-- =================================================================== -->
+      <div
+        id="scene-1"
+        class="clip"
+        data-start="0"
+        data-duration="7.0"
+        data-track-index="2"
+        style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;"
+      >
+        <div id="s1-group1" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+          <p id="s1-line1" style="font-size: 28px; font-weight: 400; color: #4B5563; letter-spacing: -0.3px;">
+            In today's fast-paced world,
+          </p>
+          <h2 id="s1-line2" style="font-size: 48px; font-weight: 900; color: #111827; letter-spacing: -1px;">
+            answers are currency.
+          </h2>
+        </div>
+
+        <div id="s1-group2" style="position: absolute; display: flex; align-items: center; justify-content: center; opacity: 0;">
+          <p id="s1-line3" style="font-size: 34px; font-weight: 500; color: #374151; letter-spacing: -0.5px;">
+            What if math reflected that?
+          </p>
+        </div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- SCENE 2: THE PROBLEM WITH FREE (7s - 16s) -->
+      <!-- =================================================================== -->
+      <div
+        id="scene-2"
+        class="clip"
+        data-start="7.0"
+        data-duration="9.0"
+        data-track-index="2"
+        style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;"
+      >
+        <!-- The Free Calculator Card -->
+        <div
+          id="s2-card"
+          class="card-shadow"
+          data-layout-allow-overflow
+          style="width: 640px; background: #ffffff; border: 1px solid #E5E7EB; border-radius: 20px; padding: 40px; position: relative;"
+        >
+          <!-- Top bar -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; padding-bottom: 16px; border-bottom: 1px solid #F3F4F6;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 17px; font-weight: 700; color: #374151;">Free Calculator</span>
+              <span style="font-size: 13px; color: #92400E; background: #FEF3C7; padding: 3px 10px; border-radius: 12px; font-weight: 600;">⚠️ Unmonetized</span>
+            </div>
+            <span style="font-size: 14px; color: #6B7280; font-weight: 500;">[no login required]</span>
+          </div>
+
+          <!-- Calculation display -->
+          <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 14px; padding: 28px; text-align: right; margin-bottom: 24px; position: relative;">
+            <div style="font-size: 48px; font-weight: 600; color: #111827; letter-spacing: 2px;">
+              2 + 2 = <span id="s2-free-result" style="color: #111827; font-weight: 900;">4</span>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; font-size: 14px; color: #6B7280; font-weight: 500;">
+            <span>Public Access</span>
+            <span>Zero Revenue Generated</span>
+          </div>
+
+          <!-- Animated Red Badge Sliding In -->
+          <div
+            id="s2-red-badge"
+            style="position: absolute; top: -16px; right: -16px; background: #B91C1C; color: #ffffff; padding: 10px 22px; border-radius: 28px; font-size: 15px; font-weight: 800; box-shadow: 0 6px 18px rgba(185, 28, 28, 0.35); opacity: 0;"
+          >
+            Answers. For anyone. For free.
+          </div>
+
+          <!-- Corporate Pointer Cursor -->
+          <div
+            id="s2-cursor"
+            style="position: absolute; top: 135px; right: 55px; opacity: 0;"
+          >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.5 3.5L11.5 20.5L14.5 13.5L21.5 10.5L5.5 3.5Z" fill="#0057D9" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Text below card -->
+        <p id="s2-subtext" data-layout-allow-overflow style="font-size: 22px; font-weight: 500; color: #4B5563; opacity: 0;">
+          Is that really the future you want?
+        </p>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- SCENE 3: PRODUCT REVEAL (16s - 22s) -->
+      <!-- =================================================================== -->
+      <div
+        id="scene-3"
+        class="clip"
+        data-start="16.0"
+        data-duration="6.0"
+        data-track-index="2"
+        style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;"
+      >
+        <div id="s3-brand-container" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+          <h1 id="s3-wordmark" style="font-size: 112px; font-weight: 900; color: #0057D9; letter-spacing: -4px; line-height: 1;">
+            Solve™
+          </h1>
+          <p id="s3-tagline" style="font-size: 26px; font-weight: 500; color: #4B5563; margin-top: 18px; letter-spacing: -0.3px;">
+            The answer, unlocked.
+          </p>
+          <div id="s3-line" style="height: 4px; width: 380px; background-color: #0057D9; margin-top: 28px; border-radius: 2px;"></div>
+        </div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- SCENE 4: PRODUCT UI REVEAL (22s - 30s) -->
+      <!-- =================================================================== -->
+      <div
+        id="scene-4"
+        class="clip"
+        data-start="22.0"
+        data-duration="8.0"
+        data-track-index="2"
+        style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;"
+      >
+        <!-- Persistent mini logo at top -->
+        <div id="s4-top-brand" style="position: absolute; top: 40px; display: flex; flex-direction: column; align-items: center;">
+          <span style="font-size: 42px; font-weight: 900; color: #0057D9; letter-spacing: -1.5px;">Solve™</span>
+          <span style="font-size: 15px; font-weight: 500; color: #6B7280;">The answer, unlocked.</span>
+        </div>
+
+        <!-- Solve™ Calculator Device -->
+        <div
+          id="s4-calculator"
+          class="card-shadow-lg"
+          style="width: 640px; background: #ffffff; border: 1px solid #E2E8F0; border-radius: 24px; padding: 32px; position: relative; margin-top: 55px;"
+        >
+          <!-- Top bar -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid #F1F5F9;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 20px; font-weight: 900; color: #0057D9;">Solve™</span>
+              <span style="font-size: 12px; background: #EFF6FF; color: #0057D9; font-weight: 700; padding: 3px 10px; border-radius: 14px;">Enterprise Calc</span>
+            </div>
+            <div style="font-size: 14px; font-weight: 600; color: #334155; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 6px 14px; border-radius: 10px;">
+              Your Plan: Enterprise ▾
+            </div>
+          </div>
+
+          <!-- Formula & Blurred Answer Display -->
+          <div style="background: #0F172A; border-radius: 16px; padding: 22px 28px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 15px; color: #94A3B8; font-weight: 600;">Computation #4092</span>
+            <div style="display: flex; align-items: center; gap: 14px;">
+              <span id="s4-equation" style="font-size: 36px; font-weight: 600; color: #F8FAFC; letter-spacing: 1px;">2 + 2 =</span>
+              <div
+                id="s4-answer-blur"
+                class="redact-blur"
+                style="padding: 6px 18px; border-radius: 10px; font-size: 32px; font-weight: 900; display: inline-flex; align-items: center; gap: 8px;"
+              >
+                <span style="font-size: 24px;">🔒</span>
+                <span style="filter: blur(4px);">4.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paywall card floating inside calculator -->
+          <div
+            id="s4-paywall-modal"
+            class="card-shadow"
+            style="background: #FFFBEB; border: 1.5px solid #FDE68A; border-radius: 16px; padding: 20px 26px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between;"
+          >
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+              <div style="display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 800; color: #78350F;">
+                <span style="font-size: 18px;">🔒</span>
+                <span>Subscribe to unlock this answer</span>
+              </div>
+              <span style="font-size: 13px; color: #92400E; font-weight: 500;">Starting at $9 / month · Metered SLA delivery</span>
+            </div>
+            <div
+              id="s4-unlock-btn"
+              class="btn-amber"
+              style="padding: 12px 24px; font-size: 15px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);"
+            >
+              <span>Unlock Answer</span>
+            </div>
+          </div>
+
+          <!-- Mock Keypad Grid -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+            <div style="padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 15px; color: #64748B;">C</div>
+            <div style="padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 15px; color: #64748B;">+/-</div>
+            <div style="padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 15px; color: #64748B;">%</div>
+            <div style="padding: 14px; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 10px; text-align: center; font-weight: 800; font-size: 18px; color: #0057D9;">÷</div>
+            <div style="padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 16px; color: #1E293B;">7</div>
+            <div style="padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 16px; color: #1E293B;">8</div>
+            <div style="padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 16px; color: #1E293B;">9</div>
+            <div style="padding: 14px; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 10px; text-align: center; font-weight: 800; font-size: 18px; color: #0057D9;">×</div>
+            <div style="padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 16px; color: #1E293B;">4</div>
+            <div style="padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 16px; color: #1E293B;">5</div>
+            <div style="padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 16px; color: #1E293B;">6</div>
+            <div style="padding: 14px; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 10px; text-align: center; font-weight: 800; font-size: 18px; color: #0057D9;">-</div>
+            <div style="padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 16px; color: #1E293B;">1</div>
+            <div id="s4-key-2" style="padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 16px; color: #1E293B;">2</div>
+            <div style="padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 16px; color: #1E293B;">3</div>
+            <div id="s4-key-plus" style="padding: 14px; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 10px; text-align: center; font-weight: 800; font-size: 18px; color: #0057D9;">+</div>
+            <div style="grid-column: span 2; padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 16px; color: #1E293B;">0</div>
+            <div style="padding: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 16px; color: #1E293B;">.</div>
+            <div id="s4-key-eq" style="padding: 14px; background: #0057D9; border-radius: 10px; text-align: center; font-weight: 800; font-size: 18px; color: #ffffff;">=</div>
+          </div>
+
+          <!-- Animated pointer -->
+          <div
+            id="s4-cursor"
+            style="position: absolute; bottom: 90px; right: 90px; opacity: 0;"
+          >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.5 3.5L11.5 20.5L14.5 13.5L21.5 10.5L5.5 3.5Z" fill="#0057D9" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Lower third corporate blue banner -->
+        <div
+          id="s4-lower-third"
+          style="position: absolute; bottom: 36px; background: #0057D9; color: #ffffff; padding: 14px 38px; border-radius: 36px; font-size: 18px; font-weight: 700; box-shadow: 0 10px 30px rgba(0, 87, 217, 0.28); display: flex; align-items: center; gap: 10px; opacity: 0;"
+        >
+          <span style="color: #93C5FD; font-size: 20px;">⚡</span>
+          <span>Real-time computation. Metered answer delivery.</span>
+        </div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- SCENE 5: FEATURE SHOWCASE (30s - 40s) -->
+      <!-- =================================================================== -->
+      <div
+        id="scene-5"
+        class="clip"
+        data-start="30.0"
+        data-duration="10.0"
+        data-track-index="2"
+        style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px;"
+      >
+        <h2 id="s5-title" style="font-size: 48px; font-weight: 900; color: #111827; letter-spacing: -1.2px; text-align: center;">
+          Everything your team needs.
+        </h2>
+
+        <!-- 2x2 Grid -->
+        <div style="display: grid; grid-template-columns: repeat(2, 540px); gap: 28px;">
+          <!-- Card 1 -->
+          <div
+            id="s5-card1"
+            class="card-shadow"
+            style="background: #ffffff; border-radius: 16px; border-left: 5px solid #0057D9; padding: 28px 32px; display: flex; flex-direction: column; gap: 10px;"
+          >
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 24px;">⚡</span>
+              <span style="font-size: 20px; font-weight: 700; color: #111827;">Real-time Computation Engine™</span>
+            </div>
+            <p style="font-size: 16px; color: #4B5563; line-height: 1.5;">
+              Sub-second arithmetic at enterprise scale
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            id="s5-card2"
+            class="card-shadow"
+            style="background: #ffffff; border-radius: 16px; border-left: 5px solid #0057D9; padding: 28px 32px; display: flex; flex-direction: column; gap: 10px;"
+          >
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 24px;">🔒</span>
+              <span style="font-size: 20px; font-weight: 700; color: #111827;">Answer Vault™</span>
+            </div>
+            <p style="font-size: 16px; color: #4B5563; line-height: 1.5;">
+              Every answer stored securely in the cloud. Access your history anytime.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            id="s5-card3"
+            class="card-shadow"
+            style="background: #ffffff; border-radius: 16px; border-left: 5px solid #0057D9; padding: 28px 32px; display: flex; flex-direction: column; gap: 10px;"
+          >
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 24px;">👥</span>
+              <span style="font-size: 20px; font-weight: 700; color: #111827;">Team Answers</span>
+            </div>
+            <p style="font-size: 16px; color: #4B5563; line-height: 1.5;">
+              Share calculations across your org. Role-based access to results.
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div
+            id="s5-card4"
+            class="card-shadow"
+            style="background: #ffffff; border-radius: 16px; border-left: 5px solid #0057D9; padding: 28px 32px; display: flex; flex-direction: column; gap: 10px;"
+          >
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 24px;">📊</span>
+              <span style="font-size: 20px; font-weight: 700; color: #111827;">Answer Analytics</span>
+            </div>
+            <p style="font-size: 16px; color: #4B5563; line-height: 1.5;">
+              Understand your arithmetic patterns. With AI-powered insights.
+            </p>
+          </div>
+        </div>
+
+        <!-- SOC2 Footer -->
+        <div id="s5-footer" style="display: flex; align-items: center; gap: 10px; font-size: 17px; color: #4B5563; margin-top: 10px; font-weight: 500;">
+          <span style="color: #0057D9; font-weight: 800; font-size: 18px;">✓</span>
+          <span>SOC2 Type II Certified. Your digits are safe with us.</span>
+        </div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- SCENE 6: PRICING (40s - 47s) -->
+      <!-- =================================================================== -->
+      <div
+        id="scene-6"
+        class="clip"
+        data-start="40.0"
+        data-duration="7.0"
+        data-track-index="2"
+        style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;"
+      >
+        <div style="text-align: center;">
+          <h2 id="s6-title" style="font-size: 48px; font-weight: 900; color: #111827; letter-spacing: -1.2px;">
+            Simple, transparent pricing.
+          </h2>
+          <p id="s6-subtitle" style="font-size: 20px; color: #4B5563; margin-top: 6px; font-weight: 500;">
+            Choose the plan that matches your answer needs.
+          </p>
+        </div>
+
+        <!-- 3 Pricing Cards -->
+        <div style="display: flex; align-items: stretch; gap: 28px; margin-top: 8px;">
+          <!-- Starter -->
+          <div
+            id="s6-card1"
+            class="card-shadow"
+            style="width: 360px; background: #ffffff; border: 1px solid #E5E7EB; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between;"
+          >
+            <div>
+              <h3 style="font-size: 20px; font-weight: 800; color: #111827;">Starter</h3>
+              <div style="margin: 18px 0;">
+                <span style="font-size: 44px; font-weight: 900; color: #111827;">$9</span>
+                <span style="font-size: 16px; color: #6B7280; font-weight: 500;">/mo</span>
+              </div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: #374151; font-weight: 500;">
+                <li>✓ 10 answers per month</li>
+                <li>✓ Basic ops only (+, -, ×, ÷)</li>
+                <li>✓ Email support</li>
+              </ul>
+            </div>
+            <div class="btn-green" style="padding: 14px; text-align: center; font-size: 15px; margin-top: 28px;">
+              Get Started
+            </div>
+          </div>
+
+          <!-- Professional -->
+          <div
+            id="s6-card2"
+            class="card-glow-blue"
+            style="width: 370px; background: #ffffff; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; position: relative;"
+          >
+            <div style="position: absolute; top: -14px; right: 24px; background: #0057D9; color: #ffffff; font-size: 12px; font-weight: 800; padding: 5px 14px; border-radius: 14px; text-transform: uppercase; letter-spacing: 0.5px;">
+              ⭐ Most Popular
+            </div>
+            <div>
+              <h3 style="font-size: 20px; font-weight: 800; color: #0057D9;">Professional</h3>
+              <div style="margin: 18px 0;">
+                <span style="font-size: 44px; font-weight: 900; color: #111827;">$49</span>
+                <span style="font-size: 16px; color: #6B7280; font-weight: 500;">/mo</span>
+              </div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: #374151; font-weight: 500;">
+                <li>✓ Unlimited answers</li>
+                <li>✓ + Decimals support</li>
+                <li>✓ + Parentheses & exponents</li>
+                <li>✓ + Order of operations</li>
+              </ul>
+            </div>
+            <div class="btn-green" style="padding: 14px; text-align: center; font-size: 15px; margin-top: 28px; box-shadow: 0 6px 18px rgba(0, 168, 107, 0.35);">
+              Get Started
+            </div>
+          </div>
+
+          <!-- Enterprise -->
+          <div
+            id="s6-card3"
+            class="card-shadow"
+            style="width: 360px; background: #ffffff; border: 1px solid #E5E7EB; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between;"
+          >
+            <div>
+              <h3 style="font-size: 20px; font-weight: 800; color: #111827;">Enterprise</h3>
+              <div style="margin: 18px 0;">
+                <span style="font-size: 38px; font-weight: 900; color: #111827;">Contact Sales</span>
+              </div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: #374151; font-weight: 500;">
+                <li>✓ Unlimited teams</li>
+                <li>✓ Dedicated math infrastructure</li>
+                <li>✓ SLA-backed answer delivery</li>
+                <li>✓ 99.999% arithmetic uptime</li>
+              </ul>
+            </div>
+            <div class="btn-green" style="padding: 14px; text-align: center; font-size: 15px; margin-top: 28px;">
+              Contact Us
+            </div>
+          </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div id="s6-disclaimer" style="text-align: center; margin-top: 6px; font-size: 12px; color: #6B7280; line-height: 1.5; max-width: 900px; font-weight: 500;">
+          All plans include a 14-day free trial. Credit card required.<br />
+          Answers not guaranteed to be correct. Solve™ is not liable for incorrect arithmetic decisions made using this platform.
+        </div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- SCENE 7: TESTIMONIALS (47s - 52s) -->
+      <!-- =================================================================== -->
+      <div
+        id="scene-7"
+        class="clip"
+        data-start="47.0"
+        data-duration="5.0"
+        data-track-index="2"
+        style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;"
+      >
+        <h2 id="s7-title" style="font-size: 44px; font-weight: 900; color: #111827; letter-spacing: -1.2px; text-align: center;">
+          Trusted by teams who need answers.
+        </h2>
+
+        <!-- 2 Testimonials -->
+        <div style="display: flex; gap: 36px;">
+          <!-- Testimonial 1 -->
+          <div
+            id="s7-card1"
+            class="card-shadow"
+            style="width: 580px; background: #ffffff; border: 1px solid #E5E7EB; border-radius: 20px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px;"
+          >
+            <p style="font-size: 18px; color: #1F2937; line-height: 1.6; font-style: italic; font-weight: 400;">
+              “Before Solve™, our team was doing math for free. I didn't realize how dangerous that was until it was almost too late.”
+            </p>
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <div style="width: 50px; height: 50px; border-radius: 50%; background: #E2E8F0; color: #334155; font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center;">
+                SM
+              </div>
+              <div style="display: flex; flex-direction: column;">
+                <span style="font-size: 17px; font-weight: 800; color: #111827;">Sarah M.</span>
+                <span style="font-size: 14px; color: #4B5563; font-weight: 500;">Director of Mathematics · Fortune 500 Company</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div
+            id="s7-card2"
+            class="card-shadow"
+            style="width: 580px; background: #ffffff; border: 1px solid #E5E7EB; border-radius: 20px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px;"
+          >
+            <p style="font-size: 18px; color: #1F2937; line-height: 1.6; font-style: italic; font-weight: 400;">
+              “The ROI on our answer spend has been incredible. We've unlocked over 40 answers this quarter alone.”
+            </p>
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <div style="width: 50px; height: 50px; border-radius: 50%; background: #E2E8F0; color: #334155; font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center;">
+                DK
+              </div>
+              <div style="display: flex; flex-direction: column;">
+                <span style="font-size: 17px; font-weight: 800; color: #111827;">David K.</span>
+                <span style="font-size: 14px; color: #4B5563; font-weight: 500;">VP of Computation · Series B Startup</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stars rating -->
+        <div id="s7-rating" style="display: flex; align-items: center; gap: 8px; font-size: 17px; color: #4B5563; margin-top: 6px;">
+          <span style="color: #F59E0B; letter-spacing: 3px; font-size: 20px;">★★★★★</span>
+          <span style="font-weight: 800; color: #111827;">4.9/5</span>
+          <span style="font-weight: 500;">from 12 enterprise reviews</span>
+        </div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- SCENE 8: CTA (52s - 55.5s) -->
+      <!-- =================================================================== -->
+      <div
+        id="scene-8"
+        class="clip"
+        data-start="52.0"
+        data-duration="3.5"
+        data-track-index="2"
+        style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 26px;"
+      >
+        <h1 id="s8-brand" style="font-size: 68px; font-weight: 900; color: #0057D9; letter-spacing: -2.5px;">
+          Solve™
+        </h1>
+        <p id="s8-heading" style="font-size: 34px; font-weight: 800; color: #111827; letter-spacing: -0.8px;">
+          Start unlocking answers today.
+        </p>
+
+        <!-- Large CTA Button -->
+        <div
+          id="s8-btn"
+          class="btn-green"
+          style="padding: 18px 52px; font-size: 22px; border-radius: 40px; box-shadow: 0 10px 30px rgba(0, 168, 107, 0.32);"
+        >
+          Start Free Trial
+        </div>
+
+        <!-- Disclaimer -->
+        <div id="s8-disclaimer" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 14px; color: #4B5563; font-weight: 500;">
+          <span>14-day free trial · Cancel anytime · <span style="border-bottom: 2px solid #0057D9; color: #1E293B; font-weight: 600;">Math not included</span></span>
+        </div>
+      </div>
+
+      <!-- Final soft fade to pure white on top track -->
+      <div
+        id="white-fade"
+        class="clip"
+        data-start="54.8"
+        data-duration="0.7"
+        data-track-index="10"
+        style="position: absolute; inset: 0; background: #ffffff; opacity: 0;"
+      ></div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- GSAP ANIMATION TIMELINE -->
+    <!-- =================================================================== -->
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // ----------------------------------------------------
+      // Scene 1 Animations (0s - 7s)
+      // ----------------------------------------------------
+      tl.fromTo("#s1-line1", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, 0.5);
+      tl.fromTo("#s1-line2", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, 1.3);
+
+      tl.to("#s1-group1", { opacity: 0, y: -15, duration: 0.7, ease: "power2.inOut" }, 3.5);
+
+      tl.fromTo("#s1-group2", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.9, ease: "power2.out" }, 4.3);
+      tl.to("#s1-group2", { opacity: 0, duration: 0.6, ease: "power2.inOut" }, 6.4);
+      tl.set("#s1-group1", { opacity: 0 }, 7.0);
+      tl.set("#s1-group2", { opacity: 0 }, 7.0);
+
+      // ----------------------------------------------------
+      // Scene 2 Animations (7s - 16s)
+      // ----------------------------------------------------
+      tl.fromTo("#s2-card", { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 7.2);
+      
+      tl.fromTo("#s2-cursor", { opacity: 0, x: 60, y: 40 }, { opacity: 1, x: 0, y: 0, duration: 0.7, ease: "power2.out" }, 8.3);
+      tl.to("#s2-cursor", { x: -100, y: 35, duration: 1.2, ease: "power2.inOut" }, 9.0);
+
+      tl.fromTo("#s2-red-badge", { opacity: 0, scale: 0.85, y: -10 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(1.5)" }, 10.2);
+      tl.fromTo("#s2-subtext", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 11.5);
+
+      tl.to(["#s2-card", "#s2-subtext"], { x: -1300, opacity: 0, duration: 1.0, ease: "power3.in" }, 14.5);
+      tl.set(["#s2-card", "#s2-subtext"], { opacity: 0 }, 16.0);
+
+      // ----------------------------------------------------
+      // Scene 3 Animations (16s - 22s)
+      // ----------------------------------------------------
+      tl.fromTo("#s3-wordmark", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 1.1, ease: "power2.out" }, 16.3);
+      tl.fromTo("#s3-tagline", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, 17.3);
+      tl.fromTo("#s3-line", { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 1.2, ease: "power2.inOut" }, 18.0);
+
+      // Scale down and transition to top
+      tl.to("#s3-brand-container", { scale: 0.6, y: -340, opacity: 0, duration: 1.0, ease: "power3.inOut" }, 20.8);
+      tl.set("#s3-brand-container", { opacity: 0 }, 22.0);
+
+      // ----------------------------------------------------
+      // Scene 4 Animations (22s - 30s)
+      // ----------------------------------------------------
+      tl.fromTo("#s4-top-brand", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 22.0);
+      tl.fromTo("#s4-calculator", { opacity: 0, y: 120 }, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 22.2);
+
+      // Keypad cursor typing simulation
+      tl.fromTo("#s4-cursor", { opacity: 0, x: 50, y: 50 }, { opacity: 1, x: 0, y: 0, duration: 0.4, ease: "power2.out" }, 23.0);
+      tl.to("#s4-key-2", { backgroundColor: "#E2E8F0", duration: 0.15, yoyo: true, repeat: 1 }, 23.4);
+      tl.to("#s4-key-plus", { backgroundColor: "#93C5FD", duration: 0.15, yoyo: true, repeat: 1 }, 23.8);
+      tl.to("#s4-key-eq", { scale: 0.95, duration: 0.15, yoyo: true, repeat: 1 }, 24.3);
+
+      // Answer lock and paywall slide up
+      tl.fromTo("#s4-answer-blur", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.4)" }, 24.5);
+      tl.fromTo("#s4-paywall-modal", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 24.8);
+
+      // Cursor moves to Unlock button
+      tl.to("#s4-cursor", { x: -40, y: -160, duration: 0.8, ease: "power2.inOut" }, 25.5);
+      tl.to("#s4-unlock-btn", { scale: 1.05, duration: 0.25, yoyo: true, repeat: 1 }, 26.3);
+
+      // Lower third
+      tl.fromTo("#s4-lower-third", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 26.2);
+      tl.to("#s4-lower-third", { opacity: 0, y: 30, duration: 0.5, ease: "power2.in" }, 28.8);
+
+      // Exit Scene 4
+      tl.to(["#s4-calculator", "#s4-top-brand", "#s4-lower-third"], { opacity: 0, y: -30, duration: 0.7, ease: "power2.in" }, 29.3);
+      tl.set(["#s4-calculator", "#s4-top-brand", "#s4-lower-third"], { opacity: 0 }, 30.0);
+
+      // ----------------------------------------------------
+      // Scene 5 Animations (30s - 40s)
+      // ----------------------------------------------------
+      tl.fromTo("#s5-title", { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 30.3);
+
+      tl.fromTo("#s5-card1", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 31.0);
+      tl.fromTo("#s5-card2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 31.4);
+      tl.fromTo("#s5-card3", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 31.8);
+      tl.fromTo("#s5-card4", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 32.2);
+
+      tl.fromTo("#s5-footer", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 33.5);
+
+      // Exit Scene 5
+      tl.to(["#s5-title", "#s5-card1", "#s5-card2", "#s5-card3", "#s5-card4", "#s5-footer"], { opacity: 0, y: -20, duration: 0.7, ease: "power2.in" }, 39.2);
+      tl.set(["#s5-title", "#s5-card1", "#s5-card2", "#s5-card3", "#s5-card4", "#s5-footer"], { opacity: 0 }, 40.0);
+
+      // ----------------------------------------------------
+      // Scene 6 Animations (40s - 47s)
+      // ----------------------------------------------------
+      tl.fromTo(["#s6-title", "#s6-subtitle"], { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 40.3);
+
+      tl.fromTo("#s6-card1", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 40.8);
+      tl.fromTo("#s6-card2", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 41.1);
+      tl.fromTo("#s6-card3", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 41.4);
+
+      tl.fromTo("#s6-disclaimer", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.out" }, 42.5);
+
+      // Exit Scene 6
+      tl.to(["#s6-title", "#s6-subtitle", "#s6-card1", "#s6-card2", "#s6-card3", "#s6-disclaimer"], { opacity: 0, y: -20, duration: 0.6, ease: "power2.in" }, 46.3);
+      tl.set(["#s6-title", "#s6-subtitle", "#s6-card1", "#s6-card2", "#s6-card3", "#s6-disclaimer"], { opacity: 0 }, 47.0);
+
+      // ----------------------------------------------------
+      // Scene 7 Animations (47s - 52s)
+      // ----------------------------------------------------
+      tl.fromTo("#s7-title", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 47.3);
+
+      tl.fromTo("#s7-card1", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.7, ease: "power2.out" }, 47.8);
+      tl.fromTo("#s7-card2", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.7, ease: "power2.out" }, 48.1);
+
+      tl.fromTo("#s7-rating", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 49.0);
+
+      // Exit Scene 7
+      tl.to(["#s7-title", "#s7-card1", "#s7-card2", "#s7-rating"], { opacity: 0, duration: 0.6, ease: "power2.in" }, 51.4);
+      tl.set(["#s7-title", "#s7-card1", "#s7-card2", "#s7-rating"], { opacity: 0 }, 52.0);
+
+      // ----------------------------------------------------
+      // Scene 8 Animations (52s - 55.5s)
+      // ----------------------------------------------------
+      tl.fromTo("#s8-brand", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 52.2);
+      tl.fromTo("#s8-heading", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 52.5);
+      tl.fromTo("#s8-btn", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.4)" }, 52.8);
+      tl.fromTo("#s8-disclaimer", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, 53.3);
+
+      // Subtle soft pulse on the green button
+      tl.to("#s8-btn", { scale: 1.04, duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, 53.6);
+
+      // Final fade to pure clean white
+      tl.to("#white-fade", { opacity: 1, duration: 0.6, ease: "power2.in" }, 54.8);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
